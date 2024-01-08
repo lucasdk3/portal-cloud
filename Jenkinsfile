@@ -32,7 +32,7 @@ pipeline {
                     // Add your deployment steps here
                     checkout scm
                     sh 'git submodule update --init --recursive'
-                    task ci:flow LANGUAGE=${LANGUAGE} TYPE=${TYPE} BUILD_NAME=${BUILD_ID} PROJECT_NAME=${JOB_NAME} WORKDIR=${WORKDIR}
+                    sh "bash -c 'task ci:flow LANGUAGE=${LANGUAGE} TYPE=${TYPE} BUILD_NAME=${BUILD_ID} PROJECT_NAME=${JOB_NAME} WORKDIR=${WORKDIR}'"
                 }
             }
         }
