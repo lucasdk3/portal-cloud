@@ -27,19 +27,12 @@ pipeline {
                         DEPLOY_ENV = 'homologation'
                     }
 
-                    script {
-                    // Faz o checkout do repositório principal
-                        checkout scm
-
-                    // Atualiza e inicializa os submódulos
-                        sh 'git submodule update --init --recursive'
-                    }
-
                     echo "Deploying to environment: ${DEPLOY_ENV}"
 
                     // Add your deployment steps here
                     checkout scm
-                    sh "bash task ci:flow LANGUAGE=${LANGUAGE} TYPE=${TYPE} BUILD_NAME=${BUILD_ID} PROJECT_NAME=${JOB_NAME} WORKDIR=${WORKDIR}"
+                    sh 'git submodule update --init --recursive'
+                    task ci:flow LANGUAGE=${LANGUAGE} TYPE=${TYPE} BUILD_NAME=${BUILD_ID} PROJECT_NAME=${JOB_NAME} WORKDIR=${WORKDIR}
                 }
             }
         }
