@@ -1,0 +1,12 @@
+version: 3
+
+tasks:
+  setup:
+    desc: "Update submodules"
+    cmds:
+      - docker compose up -d
+  
+  install:npm:
+    desc: "Update submodules"
+    cmds:
+      - docker compose run builder sh -c "npm install"

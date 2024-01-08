@@ -1,0 +1,18 @@
+version: 3
+
+## add tasksfiles as per the project requirements
+includes:
+  vm:
+    taskfile: archetypes/vm/flow.yaml
+    optional: true
+
+tasks:
+  submodule:
+    desc: "Update submodules"
+    cmds:
+      - git submodule update --init --recursive --remote --merge
+
+  default:
+    desc: "Default task"
+    cmds:
+      - task --list-all

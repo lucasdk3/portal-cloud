@@ -1,0 +1,10 @@
+version: 3
+
+tasks:
+  allow:permissions:
+    desc: "Allow Permission"
+    cmds:
+      - |
+        if [ -d "/var/www/html/{{.PROJECT_NAME}}" ]; then
+          sudo chmod -R 777 /var/www/html/{{.PROJECT_NAME}}
+        fi

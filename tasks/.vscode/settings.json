@@ -1,0 +1,13 @@
+{
+    "yaml.schemas": {
+        "https://taskfile.dev/schema.json": [
+            "file:///c%3A/Users/LucasBatista/projetos/ativy/ativy-pipeline-core/tasks/build.Taskfile.yaml",
+            "file:///c%3A/Users/LucasBatista/projetos/ativy/ativy-pipeline-core/tasks/build.yaml",
+            "file:///c%3A/Users/LucasBatista/projetos/ativy/ativy-pipeline-core/tasks/deploy.yaml",
+            "file:///c%3A/Users/LucasBatista/projetos/ativy/ativy-pipeline-core/tasks/init.yaml",
+            "file:///c%3A/Users/LucasBatista/projetos/ativy/ativy-pipeline-core/tasks/review.yaml",
+            "file:///c%3A/Users/LucasBatista/projetos/ativy/ativy-pipeline-core/archetypes/vm/flow.yaml",
+            "file:///c%3A/Users/LucasBatista/projetos/ativy/ativy-pipeline-core/commons/deploy.yaml"
+        ]
+    }
+}

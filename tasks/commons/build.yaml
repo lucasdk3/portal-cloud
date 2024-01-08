@@ -1,0 +1,9 @@
+version: 3
+
+tasks:
+  npm:
+    desc: "Build"
+    cmds:
+      - >
+        docker compose run builder sh -c "npm run build"
+      - cd {{.WORKDIR}} && ls && zip -r {{.BUILD_NAME}}.zip build

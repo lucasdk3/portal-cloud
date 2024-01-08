@@ -1,0 +1,39 @@
+version: 3
+
+## add tasksfiles as per the project requirements
+includes:
+  init:
+    taskfile: ../../commons/init.yaml
+    optional: true
+  review:
+    taskfile: ../../commons/review.yaml
+    optional: true
+  build:
+    taskfile: ../../commons/build.yaml
+    optional: true
+  deploy:
+    taskfile: ../../commons/deploy.yaml
+    optional: true
+  utils:
+    taskfile: ../../commons/utils.yaml
+    optional: true
+
+tasks:
+  flow:
+    desc: "VM Deployment Flow"
+    cmds:
+      - task: init:setup
+      - task: init:install:{{.LANGUAGE}}
+      - task: review:lint:{{.LANGUAGE}}
+      - task: build:{{.LANGUAGE}}
+        # vars:
+        #   BUILD_NAME: "{{.BUILD_NAME}}"
+      - task: utils:allow:permissions
+        # vars:
+        #   BUILD_NAME: "{{.BUILD_NAME}}"
+        #   WORKDIR: "{{.WORKDIR}}"
+      - task: deploy:{{.TYPE}}:{{.LANGUAGE}}
+        # vars:
+        #   BUILD_NAME: "{{.BUILD_NAME}}"
+        #   PROJECT_NAME: "{{.PROJECT_NAME}}"
+        #   WORKDIR: "{{.WORKDIR}}"

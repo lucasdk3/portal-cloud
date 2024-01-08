@@ -1,0 +1,10 @@
+version: 3
+
+tasks:
+  vm:npm:
+    desc: "Deploy to vm"
+    cmds:
+      - |
+        cd /var/www/html/{{.PROJECT_NAME}}
+        unzip -o {{.WORKDIR}}/{{.BUILD_NAME}}.zip
+        rm -rf {{.BUILD_NAME}}.zip

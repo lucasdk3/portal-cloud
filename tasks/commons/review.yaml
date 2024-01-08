@@ -1,0 +1,7 @@
+version: 3
+
+tasks:
+  lint:npm:
+    desc: "Analyze"
+    cmds:
+      - docker compose run builder sh -c "npm run lint"

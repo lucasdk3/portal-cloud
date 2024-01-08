@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: dockers/builder.Dockerfile
+    user: "root:root"
+    restart: always
+    privileged: true
+    working_dir: /app
+    container_name: builder
+    volumes:
+      - .:/app
+      - /tmp:/.cache
+      - npm-cache:/tmp/.npm
+    environment:
+      - npm_config_cache=/tmp/.npm
+
+volumes:
+  npm-cache:
+    external: false

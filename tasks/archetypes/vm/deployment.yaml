@@ -1,0 +1,46 @@
+
+stages:
+  - stage: deploy_flow
+    displayName: "deploy flow"
+    jobs:
+      - deployment: deploy_flow
+        environment:
+          resourceType: VirtualMachine
+          name: $(Build.Repository.Name)-${{parameters.environment}}
+        strategy:
+          rolling:
+            maxParallel: 2 #for percentages, mention as x%
+            deploy:
+              steps:
+                - checkout: self
+                  persistCredentials: true
+                  displayName: 'checkout'
+                  submodules: true
+                
+                # - bash: task submodule
+                #   displayName: "update tasks"
+                #   env:
+                #     SYSTEM_TOKEN: $(System.AccessToken)
+                
+                - bash: task init:setup
+                  displayName: "setup"
+                
+                - bash: task init:install:${{parameters.language}}
+                  displayName: "install"
+
+                - bash: task review:lint:${{parameters.language}}
+                  displayName: "lint"
+                
+                - bash: task build:${{parameters.language}}
+                  displayName: "build"
+                  env:
+                    BUILD_NAME: $(Build.BuildId)
+
+                - bash: task deploy:vm:${{parameters.language}}
+                  displayName: "deploy"
+                  env:
+                    BUILD_NAME: $(Build.BuildId)
+                    PROJECT_NAME: $(Build.Repository.Name)
+
+
+  

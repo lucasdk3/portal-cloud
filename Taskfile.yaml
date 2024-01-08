@@ -1,0 +1,30 @@
+version: 3
+
+## add tasksfiles as per the project requirements
+includes:
+  # init:
+  #   taskfile: templates/tasks/init.yaml
+  #   optional: true
+  # review:
+  #   taskfile: templates/tasks/review.yaml
+  #   optional: true
+  # build:
+  #   taskfile: templates/tasks/build.yaml
+  #   optional: true
+  # deploy:
+  #   taskfile: templates/tasks/deploy.yaml
+  #   optional: true
+  ci:
+    taskfile: tasks/archetypes/vm/flow.yaml
+    optional: true
+
+tasks:
+  submodule:
+    desc: "Update submodules"
+    cmds:
+      - git submodule update --init --recursive --remote --merge
+
+  default:
+    desc: "Default task"
+    cmds:
+      - task --list-all
