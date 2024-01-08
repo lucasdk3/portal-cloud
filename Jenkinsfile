@@ -1,5 +1,7 @@
 pipeline {
-    agent portal-ativy-cloud-develop
+    agent {
+        label 'portal-ativy-digital-develop'
+    }
 
     environment {
         DEPLOY_ENV = 'develop'
@@ -10,21 +12,19 @@ pipeline {
     }
 
     triggers {
-        branch 'develop'
-        branch 'release'
-        branch 'main'
+        cron('H/15 * * * *')
     }
 
     stages {
         stage('Deploy Flow') {
             steps {
                 script {
-                    if (BRANCH_NAME == 'release') {
-                        DEPLOY_ENV = 'homologation'
+                    if (BRANCH_NAME == 'develop') {
+                        DEPLOY_ENV = 'develop'
                     } else if (BRANCH_NAME == 'main') {
                         DEPLOY_ENV = 'production'
                     } else {
-                        DEPLOY_ENV = 'develop'
+                        DEPLOY_ENV = 'homologation'
                     }
 
                     echo "Deploying to environment: ${DEPLOY_ENV}"
