@@ -9,7 +9,7 @@ pipeline {
         LANGUAGE = 'npm'
         TYPE = 'vm'
         WORKDIR = pwd()
-        PROJECT_NAME = 'portal-ativy-digital'
+        PROJECT_NAME = 'portal-cloud-ativy'
     }
 
     triggers {
