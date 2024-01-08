@@ -9,6 +9,7 @@ pipeline {
         LANGUAGE = 'npm'
         TYPE = 'vm'
         WORKDIR = pwd()
+        PROJECT_NAME = 'portal-ativy-digital'
     }
 
     triggers {
@@ -32,7 +33,7 @@ pipeline {
                     // Add your deployment steps here
                     checkout scm
                     sh 'git submodule update --init --recursive'
-                    sh "bash -c 'task ci:flow LANGUAGE=${LANGUAGE} TYPE=${TYPE} BUILD_NAME=${BUILD_ID} PROJECT_NAME=${JOB_NAME} WORKDIR=${WORKDIR}'"
+                    sh "bash -c 'task ci:flow LANGUAGE=${LANGUAGE} TYPE=${TYPE} BUILD_NAME=${BUILD_ID} PROJECT_NAME=${PROJECT_NAME} WORKDIR=${WORKDIR}'"
                 }
             }
         }
