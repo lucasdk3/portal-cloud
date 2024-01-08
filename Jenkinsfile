@@ -27,6 +27,14 @@ pipeline {
                         DEPLOY_ENV = 'homologation'
                     }
 
+                    script {
+                    // Faz o checkout do repositório principal
+                        checkout scm
+
+                    // Atualiza e inicializa os submódulos
+                        sh 'git submodule update --init --recursive'
+                    }
+
                     echo "Deploying to environment: ${DEPLOY_ENV}"
 
                     // Add your deployment steps here
