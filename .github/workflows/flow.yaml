@@ -30,7 +30,7 @@ jobs:
         fi
 
     - name: Deployment
-      run: bash task ci:flow
+      run: task ci:flow
       env:
         LANGUAGE: npm
         TYPE: vm
