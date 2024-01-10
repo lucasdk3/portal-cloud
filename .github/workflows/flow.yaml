@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - develop
+      - release
+      - main
+
+env:
+  environment: ${{ if eq(github.event_name, 'push') && contains(github.ref, 'hml') }}homologation${{ else if eq(github.event_name, 'push') && contains(github.ref, 'main') }}production${{ else }}develop${{ endif }}
+
+jobs:
+  deploy_flow:
+    runs-on: ubuntu-latest
+    name: deploy flow
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Deployment
+      run: bash task ci:flow
+      env:
+        LANGUAGE: npm
+        TYPE: vm
+        BUILD_NAME: ${{ github.run_id }}
+        PROJECT_NAME: ${{ github.repository }}
+        WORKDIR: ${{ github.workspace }}
